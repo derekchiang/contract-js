@@ -64,12 +64,11 @@ describe 'validators',  ->
 
   describe '#isFunction', ->
     it 'should accept a float and return true', ->
-      validators.isFloat(2.0913).should.be.true
-      validators.isFloat(-2.0913).should.be.true
+      validators.isFunction(->).should.be.true
 
     it 'should accept a non-float and return false', ->
-      validators.isFloat('Haha').should.be.false
-      validators.isFloat(1993).should.be.false
+      validators.isFunction('Haha').should.be.false
+      validators.isFunction(1993).should.be.false
 
 # describe 'Contract',  ->
 #   describe '#constructor',  ->

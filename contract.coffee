@@ -17,5 +17,9 @@ validators =
   isObject: (arg) ->
     arg != null and typeof arg == 'object'
 
+  isFunction: (arg) ->
+    getType = {};
+    arg and getType.toString.call(arg) == '[object Function]';
+
 module.exports =
   validators: validators

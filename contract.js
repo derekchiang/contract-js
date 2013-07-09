@@ -14,6 +14,11 @@
     },
     isObject: function(arg) {
       return arg !== null && typeof arg === 'object';
+    },
+    isFunction: function(arg) {
+      var getType;
+      getType = {};
+      return arg && getType.toString.call(arg) === '[object Function]';
     }
   };
 

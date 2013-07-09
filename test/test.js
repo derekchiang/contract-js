@@ -81,12 +81,11 @@
     });
     return describe('#isFunction', function() {
       it('should accept a float and return true', function() {
-        validators.isFloat(2.0913).should.be["true"];
-        return validators.isFloat(-2.0913).should.be["true"];
+        return validators.isFunction(function() {}).should.be["true"];
       });
       return it('should accept a non-float and return false', function() {
-        validators.isFloat('Haha').should.be["false"];
-        return validators.isFloat(1993).should.be["false"];
+        validators.isFunction('Haha').should.be["false"];
+        return validators.isFunction(1993).should.be["false"];
       });
     });
   });
