@@ -1,0 +1,14 @@
+{
+  "name": "contract-js",
+  "description": "A library for design-by-contract programming",
+  "version": "0.0.1",
+  "author": "Derek Chiang <derekchiang93@gmail.com>",
+  "repository": { "type": "git", "url": "git@github.com:derekchiang/contract-js.git" },
+  "homepage": "https://github.com/derekchiang/contract-js",
+  "devDependencies": {
+      "mocha": "*",
+      "should": "*"
+  },
+  "keywords": ["contract", "test", "quality"],
+  "main": "./contract.js"
+}
