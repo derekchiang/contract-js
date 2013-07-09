@@ -14,5 +14,8 @@ validators =
   isFloat: (arg) ->
     arg == +arg and arg != (arg|0)
 
+  isObject: (arg) ->
+    arg != null and typeof arg == 'object'
+
 module.exports =
   validators: validators

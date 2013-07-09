@@ -11,6 +11,9 @@
     },
     isFloat: function(arg) {
       return arg === +arg && arg !== (arg | 0);
+    },
+    isObject: function(arg) {
+      return arg !== null && typeof arg === 'object';
     }
   };
 
