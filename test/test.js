@@ -47,14 +47,39 @@
     });
     describe('#isInteger', function() {
       it('should accept an integer and return true', function() {
-        return validators.isInteger(1).should.be["true"];
+        validators.isInteger(1).should.be["true"];
+        return validators.isInteger(-2).should.be["true"];
       });
       return it('should accept a non-integer and return false', function() {
         validators.isInteger('Haha').should.be["false"];
         return validators.isInteger(2.13).should.be["false"];
       });
     });
-    return describe('#isFloat', function() {
+    describe('#isFloat', function() {
+      it('should accept a float and return true', function() {
+        validators.isFloat(2.0913).should.be["true"];
+        return validators.isFloat(-2.0913).should.be["true"];
+      });
+      return it('should accept a non-float and return false', function() {
+        validators.isFloat('Haha').should.be["false"];
+        return validators.isFloat(1993).should.be["false"];
+      });
+    });
+    describe('#isObject', function() {
+      it('should accept a float and return true', function() {
+        validators.isObject(new Object()).should.be["true"];
+        return validators.isObject({
+          a: 1,
+          b: 2
+        }).should.be["true"];
+      });
+      return it('should accept a non-float and return false', function() {
+        validators.isObject('Haha').should.be["false"];
+        validators.isObject(1993).should.be["false"];
+        return validators.isObject(function() {}).should.be["false"];
+      });
+    });
+    return describe('#isFunction', function() {
       it('should accept a float and return true', function() {
         validators.isFloat(2.0913).should.be["true"];
         return validators.isFloat(-2.0913).should.be["true"];

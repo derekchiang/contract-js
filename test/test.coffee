@@ -37,12 +37,32 @@ describe 'validators',  ->
   describe '#isInteger', ->
     it 'should accept an integer and return true', ->
       validators.isInteger(1).should.be.true
+      validators.isInteger(-2).should.be.true
 
     it 'should accept a non-integer and return false', ->
       validators.isInteger('Haha').should.be.false
       validators.isInteger(2.13).should.be.false
 
   describe '#isFloat', ->
+    it 'should accept a float and return true', ->
+      validators.isFloat(2.0913).should.be.true
+      validators.isFloat(-2.0913).should.be.true
+
+    it 'should accept a non-float and return false', ->
+      validators.isFloat('Haha').should.be.false
+      validators.isFloat(1993).should.be.false
+
+  describe '#isObject', ->
+    it 'should accept a float and return true', ->
+      validators.isObject(new Object()).should.be.true
+      validators.isObject({a: 1, b: 2}).should.be.true
+
+    it 'should accept a non-float and return false', ->
+      validators.isObject('Haha').should.be.false
+      validators.isObject(1993).should.be.false
+      validators.isObject(->).should.be.false
+
+  describe '#isFunction', ->
     it 'should accept a float and return true', ->
       validators.isFloat(2.0913).should.be.true
       validators.isFloat(-2.0913).should.be.true
