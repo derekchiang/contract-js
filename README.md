@@ -10,4 +10,4 @@ Work in progress.  Check it out soon!
 
 Install [mocha](http://visionmedia.github.io/mocha/).  Then in terminal:
 
-	`mocha`
+	mocha
