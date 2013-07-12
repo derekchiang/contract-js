@@ -43,6 +43,10 @@ var calleeContract = function(result) {
 }
 ```
 
+Specifically, a caller contract should accept all arguments being passed to the function in question and return a value; if the value is truthy, then the contract is considered being honored; otherwise it's considered being violated.
+
+The same for a callee contract, except that it accepts only one value, which is the returned value of the function in question.
+
 Finally, set up the contracts:
 
 ```javascript
