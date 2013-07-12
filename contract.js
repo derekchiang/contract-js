@@ -1,39 +1,54 @@
-_ = require('underscore')
+"use strict"
 
-Contract = {
-  callerContract: function(func, contract, callback) {
-    if (_.isUndefined(callback)) {
-      callback = function() {
-        console.log('Caller contract violated.  Arguments:')
-        console.log(_.toArray(arguments))
-        return func.apply(this, arguments)
-      }
-    }
+var _ = require('underscore')
 
-    return function() {
-      if (contract.apply(this, arguments)) {
-        return func.apply(this, arguments)
-      } else {
-        return callback.apply(this, arguments)
-      }
-    }
-  },
-  calleeContract: function(func, contract, callback) {
-    if (_.isUndefined(callback)) {
-      callback = function(result) {
-        console.log('Callee contract violated.  Returned value:')
-        console.log(result)
-        return result
-      }
-    }
+;(function() {
+  Object.defineProperty(Function.prototype, 'setCallerContract', {
+    enumerable: false,
+    configurable: true,
+    writable: true,
+    value: function(contract, callback) {
+      return (function(func) {
+        if (_.isUndefined(callback)) {
+          callback = function() {
+            var args = _.toArray(arguments)
+            args.shift()
+            throw 'Caller contract violated.  Arguments: ' + args
+          }
+        }
 
-    return function() {
-      result = func.apply(this, arguments)
-      if (contract(result)) {
-        return result
-      } else {
-        return callback(result)
-      }
+        return function() {
+          if (contract.apply(this, arguments)) {
+            return func.apply(this, arguments)
+          } else {
+            return callback.apply(this, [func].concat(_.toArray(arguments)))
+          }
+        }
+      })(this)
     }
-  }
-}
+  })
+
+  Object.defineProperty(Function.prototype, 'setCalleeContract', {
+    enumerable: false,
+    configurable: true,
+    writable: true,
+    value: function(contract, callback) {
+      return (function(func) {
+        if (_.isUndefined(callback)) {
+          callback = function(func, result) {
+            throw 'Callee contract violated.  Returned value: ' + result
+          }
+        }
+
+        return function() {
+          var result = func.apply(this, arguments)
+          if (contract(result)) {
+            return result
+          } else {
+            return callback.call(this, func, result)
+          }
+        }
+      })(this)
+    }
+  })
+}).call(this)
