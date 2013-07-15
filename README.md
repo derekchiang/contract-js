@@ -78,3 +78,7 @@ Install [mocha](http://visionmedia.github.io/mocha/).  Then in terminal:
 
 	npm install
 	mocha
+	
+## License
+
+[WTFPL](http://www.wtfpl.net/about/).
