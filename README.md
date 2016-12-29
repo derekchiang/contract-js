@@ -74,7 +74,7 @@ The value returned by your callback function will be the returned value of your 
 
 ## Run tests
 
-Install [mocha](http://visionmedia.github.io/mocha/).  Then in terminal:
+Install [mocha](http://mochajs.org/).  Then in terminal:
 
 	npm install
 	mocha
